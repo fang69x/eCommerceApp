@@ -105,9 +105,9 @@
     },
     {
       "name": "fl_chart",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.62.0",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.70.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter",
@@ -446,7 +446,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-12-16T16:09:06.139846Z",
+  "generated": "2024-12-24T17:26:10.437668Z",
   "generator": "pub",
   "generatorVersion": "3.6.0",
   "flutterRoot": "file:///D:/Android/flutter",
