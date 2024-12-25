@@ -19,7 +19,6 @@ class CategoryHeader extends StatelessWidget {
         Expanded(child: SearchField(
           onChange: (val) {
             //TODO: should complete call filterCategories
-
           },
         )),
         ProfileCard()
