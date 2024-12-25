@@ -1,3 +1,4 @@
+import 'package:admin/utility/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../utility/constants.dart';
@@ -48,7 +49,9 @@ class CategoryScreen extends StatelessWidget {
                           Gap(20),
                           IconButton(
                               onPressed: () {
-                                //TODO: should complete getAllCategory
+                                context.dataProvider.getAllCategory(
+                                    showSnack:
+                                        true); //snackbar is true here as after we tap on refresh button we need to tell that it is refreshed
                               },
                               icon: Icon(Icons.refresh)),
                         ],
