@@ -78,7 +78,7 @@ class CategoryProvider extends ChangeNotifier {
         if (apiResponse.success == true) {
           clearFields();
           SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
-          log('category added');
+          log('category updated');
           _dataProvider.getAllCategory();
         } else {
           SnackBarHelper.showErrorSnackBar(
@@ -112,8 +112,6 @@ class CategoryProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  //TODO: should complete deleteCategory
 
   deleteCategory(Category category) async {
     try {
