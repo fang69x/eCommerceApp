@@ -62,13 +62,13 @@ class DashBoardProvider extends ChangeNotifier {
       Map<String, dynamic> formDataMap = {
         'name': productNameCtrl.text,
         'description': productDescCtrl.text,
-        'proCategoryId': selectedCategory?.sId,
-        'proSubCategoryId': selectedSubCategory?.sId,
-        'proBrandId': selectedBrand?.sId,
+        'proCategoryId': selectedCategory?.sId ?? '',
+        'proSubCategoryId': selectedSubCategory?.sId ?? '',
+        'proBrandId': selectedBrand?.sId ?? '',
         'price': productPriceCtrl.text,
         'offerPrice': productOffPriceCtrl.text.isEmpty
             ? productPriceCtrl.text
-            : productPriceCtrl.text,
+            : productOffPriceCtrl.text,
         'quantity': productQntCtrl.text,
         'proVarirantTypeId': selectedVariantType?.sId,
         'proVariantId': selectedVariants,
@@ -82,25 +82,24 @@ class DashBoardProvider extends ChangeNotifier {
           'image5': fifthImgXFile,
         }
       ], formData: formDataMap);
-      if (productForUpdate != null) {
-        final response =
-            await service.addItem(endpointUrl: 'products', itemData: form);
-        if (response.isOk) {
-          ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
-          if (apiResponse.success == true) {
-            clearFields();
-            SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
-            _dataProvider.getAllProduct();
-            log('products added');
-            clearFields();
-          } else {
-            SnackBarHelper.showErrorSnackBar(
-                'Failed to add products. ${apiResponse.message}');
-          }
+      if (productForUpdate != null) {}
+      final response =
+          await service.addItem(endpointUrl: 'products', itemData: form);
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          clearFields();
+          SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+          _dataProvider.getAllProduct();
+          log('products added');
+          clearFields();
         } else {
           SnackBarHelper.showErrorSnackBar(
-              'Error ${response.body?['message'] ?? response.statusText}');
+              'Failed to add products. ${apiResponse.message}');
         }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error ${response.body?['message'] ?? response.statusText}');
       }
     } catch (e) {
       print(e);
@@ -115,13 +114,13 @@ class DashBoardProvider extends ChangeNotifier {
       Map<String, dynamic> formDataMap = {
         'name': productNameCtrl.text,
         'description': productDescCtrl.text,
-        'proCategoryId': selectedCategory?.sId,
-        'proSubCategoryId': selectedSubCategory?.sId,
-        'proBrandId': selectedBrand?.sId,
+        'proCategoryId': selectedCategory?.sId ?? '',
+        'proSubCategoryId': selectedSubCategory?.sId ?? '',
+        'proBrandId': selectedBrand?.sId ?? '',
         'price': productPriceCtrl.text,
         'offerPrice': productOffPriceCtrl.text.isEmpty
             ? productPriceCtrl.text
-            : productPriceCtrl.text,
+            : productOffPriceCtrl.text,
         'quantity': productQntCtrl.text,
         'proVarirantTypeId': selectedVariantType?.sId,
         'proVariantId': selectedVariants,
@@ -135,27 +134,26 @@ class DashBoardProvider extends ChangeNotifier {
           'image5': fifthImgXFile,
         }
       ], formData: formDataMap);
-      if (productForUpdate != null) {
-        final response = await service.updateItem(
-            endpointUrl: 'products',
-            itemData: form,
-            itemId: '${productForUpdate?.sId}');
-        if (response.isOk) {
-          ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
-          if (apiResponse.success == true) {
-            clearFields();
-            SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
-            log('products updated');
-            _dataProvider.getAllProduct();
-            clearFields();
-          } else {
-            SnackBarHelper.showErrorSnackBar(
-                'Failed to update products. ${apiResponse.message}');
-          }
+      if (productForUpdate != null) {}
+      final response = await service.updateItem(
+          endpointUrl: 'products',
+          itemData: form,
+          itemId: '${productForUpdate?.sId}');
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          clearFields();
+          SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+          log('products updated');
+          _dataProvider.getAllProduct();
+          clearFields();
         } else {
           SnackBarHelper.showErrorSnackBar(
-              'Error ${response.body?['message'] ?? response.statusText}');
+              'Failed to update products. ${apiResponse.message}');
         }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error ${response.body?['message'] ?? response.statusText}');
       }
     } catch (e) {
       print(e);
