@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 //?Middle wair
-app.use(cors({ origin: '*' }))
+app.use(cors())
 app.use(bodyParser.json());
 //? setting static folder path
 app.use('/image/products', express.static('public/products'));

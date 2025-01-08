@@ -105,7 +105,7 @@
     },
     {
       "name": "fl_chart",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.70.0",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.70.1",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -117,7 +117,7 @@
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.23",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.24",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -165,7 +165,7 @@
     },
     {
       "name": "http_parser",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.1.1",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -177,7 +177,7 @@
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.12+18",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.12+19",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -189,9 +189,9 @@
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.12+1",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.12+2",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.4"
     },
     {
       "name": "image_picker_linux",
@@ -207,9 +207,9 @@
     },
     {
       "name": "image_picker_platform_interface",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.10.0",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.10.1",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.4"
     },
     {
       "name": "image_picker_windows",
@@ -399,7 +399,7 @@
     },
     {
       "name": "vector_graphics_codec",
-      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/vector_graphics_codec-1.1.12",
+      "rootUri": "file:///C:/Users/91763/AppData/Local/Pub/Cache/hosted/pub.dev/vector_graphics_codec-1.1.13",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -446,7 +446,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-12-24T17:26:10.437668Z",
+  "generated": "2025-01-08T06:44:53.132349Z",
   "generator": "pub",
   "generatorVersion": "3.6.0",
   "flutterRoot": "file:///D:/Android/flutter",
