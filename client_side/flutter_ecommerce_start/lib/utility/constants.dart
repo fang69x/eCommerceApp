@@ -1,5 +1,5 @@
 const MAIN_URL = 'https://ecommerce-server-1-u7rx.onrender.com';
-
+//http://localhost:3000
 const FAVORITE_PRODUCT_BOX = 'FAVORITE_PRODUCT_BOX';
 const USER_INFO_BOX = 'USER_INFO_BOX';
 

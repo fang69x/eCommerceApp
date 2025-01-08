@@ -90,7 +90,7 @@ router.put('/:id', asyncHandler(async (req, res) => {
             } else if (err) {
                 console.log(`Update category: ${err.message}`);
                 return res.json({ success: false, message: err.message });
-            }
+            }a
 
             const { name } = req.body;
             let image = req.body.image;
