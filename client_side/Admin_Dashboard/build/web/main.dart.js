@@ -48493,7 +48493,7 @@ s=p}while(true)switch(s){case 0:p=4
 m=A.af2()
 if(m.db)A.ab("Can not emit events to disposed clients")
 s=7
-return A.D(m.gCe().y0(0,"http://localhost:3000/"+a,null,null,null,null,t.z),$async$jB)
+return A.D(m.gCe().y0(0,"https://ecommerce-server-1-u7rx.onrender.com/"+a,null,null,null,null,t.z),$async$jB)
 case 7:m=c
 q=m
 s=1
@@ -48523,7 +48523,7 @@ s=p}while(true)switch(s){case 0:p=4
 l=A.af2()
 if(l.db)A.ab("Can not emit events to disposed clients")
 s=7
-return A.D(l.gCe().D4("http://localhost:3000/"+a,b,null,null,null,null,null,t.z),$async$jR)
+return A.D(l.gCe().D4("https://ecommerce-server-1-u7rx.onrender.com/"+a,b,null,null,null,null,null,t.z),$async$jR)
 case 7:n=d
 A.cH(n.r)
 q=n
@@ -48555,7 +48555,7 @@ s=p}while(true)switch(s){case 0:p=4
 m=A.af2()
 if(m.db)A.ab("Can not emit events to disposed clients")
 s=7
-return A.D(m.gCe().D9(0,"http://localhost:3000/"+a+"/"+c,b,null,null,null,null,null,t.z),$async$ks)
+return A.D(m.gCe().D9(0,"https://ecommerce-server-1-u7rx.onrender.com/"+a+"/"+c,b,null,null,null,null,null,t.z),$async$ks)
 case 7:m=e
 q=m
 s=1
@@ -48585,7 +48585,7 @@ s=p}while(true)switch(s){case 0:p=4
 m=A.af2()
 if(m.db)A.ab("Can not emit events to disposed clients")
 s=7
-return A.D(m.gCe().Bo(0,"http://localhost:3000/"+a+"/"+b,null,null,null,null,t.z),$async$jZ)
+return A.D(m.gCe().Bo(0,"https://ecommerce-server-1-u7rx.onrender.com/"+a+"/"+b,null,null,null,null,t.z),$async$jZ)
 case 7:m=d
 q=m
 s=1
