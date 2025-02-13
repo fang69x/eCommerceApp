@@ -15,11 +15,10 @@ class LoginScreen extends StatelessWidget {
       // savedPassword: '12345',
       loginAfterSignUp: false,
       logo: const AssetImage('assets/images/logo.png'),
-      onLogin: (loginData) {
-        //TODO: should complete call login
+      onLogin: (LoginData loginData) {
+        context.userProvider.login(loginData);
       },
       onSignup: (SignupData data) {
-        //TODO: should complete call register
         context.userProvider.register(data);
       },
       onSubmitAnimationCompleted: () {

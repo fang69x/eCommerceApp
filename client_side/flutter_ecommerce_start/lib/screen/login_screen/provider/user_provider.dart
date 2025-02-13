@@ -1,8 +1,7 @@
 import 'dart:developer';
-
 import 'package:e_commerce_flutter/models/api_response.dart';
 import 'package:e_commerce_flutter/utility/snack_bar_helper.dart';
-
+import 'package:flutter_login/flutter_login.dart';
 import '../../../core/data/data_provider.dart';
 import '../../../models/user.dart';
 import '../login_screen.dart';
@@ -19,10 +18,41 @@ class UserProvider extends ChangeNotifier {
 
   UserProvider(this._dataProvider);
 
-  //TODO: should complete login
+  Future<String?> login(LoginData data) async {
+    try {
+      Map<String, dynamic> loginData = {
+        "name": data.name.toLowerCase(),
+        "password": data.password
+      };
+      final response = await service.addItem(
+          endpointUrl: 'users/login', itemData: loginData);
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body,
+            (json) => User.fromJson(json as Map<String, dynamic>));
+        if (apiResponse.success == true) {
+          User? user = apiResponse.data;
+          saveLoginInfo(user);
+          SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+          log('Login Success');
+          return null;
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+              'Failed to Login:${apiResponse.message}');
+          return 'Failed to Login:${apiResponse.message}';
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error ${response.body?['message'] ?? response.statusText}');
+        return 'Error ${response.body?['message'] ?? response.statusText}';
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred: $e');
+    }
+    return null;
+  }
 
-  //TODO: should complete register
-  Future<String?> register(data) async {
+  Future<String?> register(SignupData data) async {
     try {
       Map<String, dynamic> user = {
         "name": data.name?.toLowerCase(),
@@ -50,6 +80,7 @@ class UserProvider extends ChangeNotifier {
       print(e);
       SnackBarHelper.showErrorSnackBar('An error occurred: $e');
     }
+    return null;
   }
 
   Future<void> saveLoginInfo(User? loginUser) async {
