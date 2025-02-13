@@ -14,19 +14,14 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Assuming your theme and colors are defined elsewhere in your app
-    const TextStyle linkStyle =
-        TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
-    const TextStyle titleStyle =
-        TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
+    const TextStyle linkStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
+    const TextStyle titleStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           "My Account",
-          style: TextStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
-              color: AppColor.darkOrange),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColor.darkOrange),
         ),
       ),
       body: ListView(
@@ -41,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 19),
+          const SizedBox(height: 20),
           Center(
             child: Text(
               "${context.userProvider.getLoginUsr()?.name}",
@@ -70,10 +65,8 @@ class ProfileScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.darkOrange,
                 foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               ),
               onPressed: () {
                 context.userProvider.logOutUser();
