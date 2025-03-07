@@ -16,15 +16,43 @@ class ProductByCategoryProvider extends ChangeNotifier {
 
   ProductByCategoryProvider(this._dataProvider);
 
-  //TODO: should complete filterInitialProductAndSubCategory
+  filterInitialProductAndSubCategory(Category selectedCategory) {
+    mySelectedSubCategory = SubCategory(name: 'All');
+    mySelectedCategory = selectedCategory;
+    subCategories = _dataProvider.subCategories
+        .where((element) => element.categoryId?.sId == selectedCategory.sId)
+        .toList();
+    subCategories.insert(0, SubCategory(name: 'All'));
+    filteredProduct = _dataProvider.products
+        .where(
+            (element) => element.proCategoryId?.name == selectedCategory.name)
+        .toList();
+    notifyListeners();
+  }
 
-  //TODO: should complete filterProductBySubCategory
+  filterProductBySubCategory(SubCategory subCategory) {
+    mySelectedSubCategory = subCategory;
+    if (subCategory.name?.toLowerCase() == 'all') {
+      filteredProduct = _dataProvider.products
+          .where((element) =>
+              element.proCategoryId?.name == mySelectedSubCategory?.name)
+          .toList();
+      brands = [];
+    } else {
+      filteredProduct = _dataProvider.products
+          .where(
+              (element) => element.proSubCategoryId?.name == subCategory.name)
+          .toList();
+      brands = _dataProvider.brands
+          .where((element) => element.subcategoryId?.sId == subCategory.sId)
+          .toList();
+    }
+    notifyListeners();
+  }
 
   //TODO: should complete filterProductByBrand
 
-
   //TODO: should complete sortProducts
-
 
   void updateUI() {
     notifyListeners();
