@@ -96,7 +96,11 @@ class ProductByCategoryScreen extends StatelessWidget {
                                         items: proByCatProvider.brands,
                                         onSelectionChanged: (val) {
                                           proByCatProvider.selectedBrands = val;
-                                          //TODO: should complete call filterProductByBrand
+                                          Provider.of<ProductByCategoryProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .filterProductByBrand();
+
                                           proByCatProvider.updateUI();
                                         },
                                         displayItem: (val) => val.name ?? '',

@@ -50,7 +50,24 @@ class ProductByCategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //TODO: should complete filterProductByBrand
+  void filterProductByBrand() {
+    if (selectedBrands.isEmpty) {
+      // if no brand is selected show all products in the category
+      filteredProduct = _dataProvider.products
+          .where((product) =>
+              product.proSubCategoryId?.name == mySelectedCategory?.name)
+          .toList();
+    } else {
+      //filter product with selected brand
+      filteredProduct = _dataProvider.products
+          .where((product) =>
+              product.proSubCategoryId?.name == mySelectedCategory?.name &&
+              selectedBrands
+                  .any((brand) => product.proBrandId?.sId == brand.sId))
+          .toList();
+    }
+    notifyListeners();
+  }
 
   //TODO: should complete sortProducts
 
