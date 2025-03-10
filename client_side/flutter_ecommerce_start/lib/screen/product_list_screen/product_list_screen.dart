@@ -22,7 +22,7 @@ class ProductListScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hello Sina",
+                  "Hello ",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 Text(
@@ -37,18 +37,16 @@ class ProductListScreen extends StatelessWidget {
                 const SizedBox(height: 5),
                 Consumer<DataProvider>(
                   builder: (context, dataProvider, child) {
-                    return CategorySelector(
-                      categories: dataProvider.categories,
-                    );
-                  },
-                ),
-                Consumer<DataProvider>(
-                  builder: (context, dataProvider, child) {
+                    if (dataProvider.products.isEmpty) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
                     return ProductGridView(
                       items: dataProvider.products,
                     );
                   },
-                ),
+                )
               ],
             ),
           ),

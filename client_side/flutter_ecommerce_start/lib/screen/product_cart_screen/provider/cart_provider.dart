@@ -178,6 +178,11 @@ class CartProvider extends ChangeNotifier {
   }
 
   //TODO: should complete submitOrder
+  submitOrder(BuildContext context) {
+    if (selectedPaymentOption == 'cod') {
+      addOrder(context);
+    } else {}
+  }
 
   clearCouponDiscount() {
     couponApplied = null;
