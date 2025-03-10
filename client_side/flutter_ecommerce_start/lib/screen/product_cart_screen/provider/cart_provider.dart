@@ -177,11 +177,14 @@ class CartProvider extends ChangeNotifier {
     }).toList();
   }
 
-  //TODO: should complete submitOrder
-  submitOrder(BuildContext context) {
+  submitOrder(BuildContext context) async {
     if (selectedPaymentOption == 'cod') {
       addOrder(context);
-    } else {}
+    } else {
+      await razorpayPayment(operation: () {
+        addOrder(context);
+      });
+    }
   }
 
   clearCouponDiscount() {
@@ -292,7 +295,7 @@ class CartProvider extends ChangeNotifier {
       if (razorpayKey != null && razorpayKey != '') {
         var options = {
           'key': razorpayKey,
-          'amount': 100, //TODO: should complete amount grand total
+          'amount': getGrandTotal() * 100,
           'name': "user",
           "currency": 'INR',
           'description': 'Your transaction description',
