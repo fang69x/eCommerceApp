@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:e_commerce_flutter/utility/utility_extention.dart';
+
 import '../../../models/coupon.dart';
 import '../../login_screen/provider/user_provider.dart';
 import '../../../services/http_services.dart';
@@ -45,6 +47,10 @@ class CartProvider extends ChangeNotifier {
     quantity = cartItem.quantity + quantity;
     flutterCart.updateQuantity(cartItem.productId, cartItem.variants, quantity);
     notifyListeners();
+  }
+
+  clearCartItems() {
+    return flutterCart.subtotal;
   }
 
   double getCartSubTotal() {
@@ -111,11 +117,67 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
+  addOrder(BuildContext context) async {
+    try {
+      Map<String, dynamic> order = {
+        "userID": _userProvider.getLoginUsr()?.sId ?? '',
+        "orderStatus": "pending",
+        "items": cartItemToOrderItem(myCartItems),
+        "totalPrice": getCartSubTotal(),
+        "shippingAddress": {
+          "phone": phoneController.text,
+          "street": streetController.text,
+          "city": cityController.text,
+          "state": stateController.text,
+          "postalCode": postalCodeController.text,
+          "country": countryController.text,
+        },
+        "paymentMethod": selectedPaymentOption,
+        "couponCode": couponApplied?.sId,
+        "orderTotal": {
+          "subtotal": getCartSubTotal(),
+          "discount": couponCodeDiscount,
+          "total": getGrandTotal(),
+        }
+      };
+      final response =
+          await service.addItem(endpointUrl: 'orders', itemData: order);
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+          log('Order added');
+          clearCouponDiscount();
+          clearCartItems();
+          Navigator.pop(context);
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+              'Failed to add Order:${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error ${response.body?['message'] ?? response.statusText}');
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred :$e');
+      rethrow;
+    }
+  }
+
+  List<Map<String, dynamic>> cartItemToOrderItem(List<CartModel> cartItems) {
+    return cartItems.map((cartItem) {
+      return {
+        "productID": cartItem.productId,
+        "productName": cartItem.productName,
+        "quantity": cartItem.quantity,
+        "price": cartItem.variants.safeElementAt(0)?.price ?? 0,
+        "variant": cartItem.variants.safeElementAt(0)?.color ?? "",
+      };
+    }).toList();
+  }
+
   //TODO: should complete submitOrder
-
-  //TODO: should complete addOrder
-
-  //TODO: should complete cartItemToOrderItem
 
   clearCouponDiscount() {
     couponApplied = null;
