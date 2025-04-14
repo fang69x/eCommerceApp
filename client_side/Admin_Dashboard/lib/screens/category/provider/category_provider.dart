@@ -125,7 +125,7 @@ class CategoryProvider extends ChangeNotifier {
         }
       } else {
         SnackBarHelper.showErrorSnackBar(
-            'Error ${response.body > ['message'] ?? response.statusText}');
+            'Error ${response.body?['message'] ?? response.statusText}');
       }
     } catch (e) {
       print(e);

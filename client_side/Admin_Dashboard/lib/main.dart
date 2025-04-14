@@ -24,8 +24,12 @@ void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => DataProvider()),
     ChangeNotifierProvider(create: (context) => MainScreenProvider()),
-    ChangeNotifierProvider(
-        create: (context) => CategoryProvider(context.dataProvider)),
+    ChangeNotifierProxyProvider<DataProvider, CategoryProvider>(
+      create: (context) =>
+          CategoryProvider(Provider.of<DataProvider>(context, listen: false)),
+      update: (context, dataProvider, previous) =>
+          previous ?? CategoryProvider(dataProvider),
+    ),
     ChangeNotifierProvider(
         create: (context) => SubCategoryProvider(context.dataProvider)),
     ChangeNotifierProvider(

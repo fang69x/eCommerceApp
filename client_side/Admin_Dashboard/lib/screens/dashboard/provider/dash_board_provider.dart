@@ -52,7 +52,6 @@ class DashBoardProvider extends ChangeNotifier {
 
   DashBoardProvider(this._dataProvider);
 
-  //TODO: should complete addProduct
   addProduct() async {
     try {
       if (selectedMainImage == null) {
@@ -108,7 +107,6 @@ class DashBoardProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: should complete updateProduct
   updateProduct() async {
     try {
       Map<String, dynamic> formDataMap = {
@@ -162,7 +160,6 @@ class DashBoardProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: should complete submitProduct
   submitProduct() {
     if (productForUpdate != null) {
       updateProduct();
@@ -171,7 +168,6 @@ class DashBoardProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: should complete deleteProduct
   deleteProduct(Product product) async {
     try {
       Response response = await service.deleteItem(
@@ -246,7 +242,6 @@ class DashBoardProvider extends ChangeNotifier {
     return form;
   }
 
-  //TODO: should complete filterSubcategory
   filterSubcategory(Category category) {
     selectedSubCategory = null;
     selectedBrand = null;
@@ -259,7 +254,6 @@ class DashBoardProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //TODO: should complete filterBrand
   filterBrand(SubCategory subCategory) {
     selectedBrand = null;
     selectedSubCategory = subCategory;
@@ -271,7 +265,6 @@ class DashBoardProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //TODO: should complete filterVariant
   filterVariant(VariantType variantType) {
     selectedVariants = [];
     selectedVariantType = variantType;

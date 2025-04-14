@@ -19,7 +19,6 @@ class DashBoardHeader extends StatelessWidget {
         Spacer(flex: 1),
         Expanded(child: SearchField(
           onChange: (val) {
-            //TODO: should complete call filterProducts
             context.dataProvider.filterProduct(val);
           },
         )),

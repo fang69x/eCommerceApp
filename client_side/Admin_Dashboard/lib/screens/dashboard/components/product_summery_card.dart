@@ -3,11 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../utility/constants.dart';
 import '../../../models/product_summery_info.dart';
 
-
 class ProductSummeryCard extends StatelessWidget {
   const ProductSummeryCard({
     Key? key,
-    required this.info, required this.onTap,
+    required this.info,
+    required this.onTap,
   }) : super(key: key);
 
   final ProductSummeryInfo info;
@@ -16,7 +16,7 @@ class ProductSummeryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         onTap(info.title);
       },
       child: Container(

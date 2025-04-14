@@ -52,7 +52,6 @@ class DashboardScreen extends StatelessWidget {
                           Gap(20),
                           IconButton(
                               onPressed: () {
-                                //TODO: should complete call getAllProduct
                                 context.dataProvider
                                     .getAllProduct(showSnack: true);
                               },
