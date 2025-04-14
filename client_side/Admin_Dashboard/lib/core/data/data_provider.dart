@@ -104,7 +104,7 @@ class DataProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Category>> getAllSubCategory({bool showSnack = false}) async {
+  Future<List<SubCategory>> getAllSubCategory({bool showSnack = false}) async {
     try {
       Response response = await service.getItems(endpointUrl: 'subCategories');
       if (response.isOk) {
@@ -123,7 +123,7 @@ class DataProvider extends ChangeNotifier {
       if (showSnack) SnackBarHelper.showErrorSnackBar(e.toString());
       rethrow;
     }
-    return _filteredCategories;
+    return _filteredSubCategories;
   }
 
   void filterSubCategories(String keyword) {
@@ -242,22 +242,24 @@ class DataProvider extends ChangeNotifier {
   Future<void> getAllProduct({bool showSnack = false}) async {
     try {
       Response response = await service.getItems(endpointUrl: 'products');
-      ApiResponse<List<Product>> apiResponse =
-          ApiResponse<List<Product>>.fromJson(
-        response.body,
-        (json) => (json as List).map((item) => Product.fromJson(item)).toList(),
-      );
-      _allProducts = apiResponse.data ?? [];
-      _filteredProducts = List.from(_allProducts);
-      notifyListeners();
-
-      if (showSnack) {
-        SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+      if (response.isOk) {
+        // Add this check
+        ApiResponse<List<Product>> apiResponse =
+            ApiResponse<List<Product>>.fromJson(
+          response.body,
+          (json) =>
+              (json as List).map((item) => Product.fromJson(item)).toList(),
+        );
+        _allProducts = apiResponse.data ?? [];
+        _filteredProducts = List.from(_allProducts);
+        notifyListeners();
+        if (showSnack) SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+      } else {
+        if (showSnack)
+          SnackBarHelper.showErrorSnackBar("Failed to load products");
       }
     } catch (e) {
-      if (showSnack) {
-        SnackBarHelper.showErrorSnackBar(e.toString());
-      }
+      SnackBarHelper.showErrorSnackBar(e.toString());
     }
   }
 
