@@ -279,7 +279,6 @@ class ProductSubmitForm extends StatelessWidget {
                               variantType?.name ?? '',
                           onChanged: (newValue) {
                             if (newValue != null) {
-                              //TODO: should complete call filterVariant
                               context.dashBoardProvider.filterVariant(newValue);
                             }
                           },
@@ -338,7 +337,7 @@ class ProductSubmitForm extends StatelessWidget {
                         context
                             .dashBoardProvider.addProductFormKey.currentState!
                             .save();
-                        //TODO: should complete call submitProduct
+
                         context.dashBoardProvider.submitProduct();
                         Navigator.of(context).pop();
                       }

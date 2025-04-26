@@ -1,4 +1,8 @@
 import 'dart:ui';
+import 'package:e_commerce_flutter/utility/constants.dart';
+import 'package:e_commerce_flutter/utility/snack_bar_helper.dart';
+import 'package:get_storage/get_storage.dart';
+
 import '../provider/cart_provider.dart';
 import '../../../utility/extensions.dart';
 import '../../../widget/compleate_order_button.dart';
@@ -204,23 +208,54 @@ void showCustomBottomSheet(BuildContext context) {
                 Consumer<CartProvider>(
                   builder: (context, cartProvider, child) {
                     return CompleteOrderButton(
-                        labelText:
-                            'Complete Order  \$${context.cartProvider.getGrandTotal()} ',
-                        onPressed: () {
-                          if (!cartProvider.isExpanded) {
-                            cartProvider.isExpanded = true;
-                            cartProvider.updateUI();
-                            return;
+                      labelText:
+                          'Complete Order  \$${context.cartProvider.getGrandTotal()} ',
+                      onPressed: () async {
+                        if (!cartProvider.isExpanded) {
+                          cartProvider.isExpanded = true;
+                          cartProvider.updateUI();
+                          return;
+                        }
+
+                        if (context.cartProvider.buyNowFormKey.currentState!
+                            .validate()) {
+                          context.cartProvider.buyNowFormKey.currentState!
+                              .save();
+
+                          // Save address details
+                          final box = GetStorage();
+                          box.write(
+                              PHONE_KEY, cartProvider.phoneController.text);
+                          box.write(
+                              STREET_KEY, cartProvider.streetController.text);
+                          box.write(CITY_KEY, cartProvider.cityController.text);
+                          box.write(
+                              STATE_KEY, cartProvider.stateController.text);
+                          box.write(POSTAL_CODE_KEY,
+                              cartProvider.postalCodeController.text);
+                          box.write(
+                              COUNTRY_KEY, cartProvider.countryController.text);
+
+                          // Show loading indicator
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => const Center(
+                                child: CircularProgressIndicator()),
+                          );
+
+                          try {
+                            await cartProvider.submitOrder(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          } catch (e) {
+                            Navigator.pop(context); // Close loading
+                            SnackBarHelper.showErrorSnackBar(
+                                'Payment failed: $e');
                           }
-                          // Check if the form is valid
-                          if (context.cartProvider.buyNowFormKey.currentState!
-                              .validate()) {
-                            context.cartProvider.buyNowFormKey.currentState!
-                                .save();
-                            //TODO: should complete call submitOrder
-                            return;
-                          }
-                        });
+                        }
+                      },
+                    );
                   },
                 )
               ],

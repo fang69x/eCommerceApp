@@ -139,7 +139,6 @@ class DataProvider extends ChangeNotifier {
     return _filteredBrands;
   }
 
-  //TODO: should complete filterBrands
   void filterBrands(String keyword) {
     if (keyword.isEmpty) {
       _filteredBrands = List.from(_allBrands);
@@ -174,7 +173,6 @@ class DataProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: should complete filterProducts
   void filterProduct(String keyword) {
     if (keyword.isEmpty) {
       _filteredProducts = List.from(_allProducts);

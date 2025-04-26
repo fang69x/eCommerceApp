@@ -50,7 +50,6 @@ class PosterScreen extends StatelessWidget {
                           Gap(20),
                           IconButton(
                               onPressed: () {
-                                //TODO: should complete call getAllPosters
                                 context.dataProvider
                                     .getAllPosters(showSnack: true);
                               },
